@@ -29,11 +29,11 @@ Farmer's Marketplace is a web application designed to connect farmers directly w
 ## Technologies Used
 - **Frontend:**
   - HTML, CSS, JavaScript
-  - Frameworks: React.js or Vue.js (choose one)
+  - Frameworks: React.js
 
 - **Backend:**
   - Node.js with Express.js
-  - Database: MongoDB or PostgreSQL (choose one)
+  - Database: MongoDB
 
 - **Authentication:**
   - JWT (JSON Web Tokens) for secure user authentication.
