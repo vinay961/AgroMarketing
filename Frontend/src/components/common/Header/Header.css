@@ -30,15 +30,17 @@
     padding: 0;
   }
   
-  .nav-bar ul li a {
+  .nav-bar ul li  {
     color: white;
     text-decoration: none;
     font-size: 20px;
     transition: color 0.3s ease;
   }
   
-  .nav-bar ul li a:hover {
+  .nav-bar ul li:hover {
     color: #c8e6c9;
+    border-radius: 10px;
+    cursor: pointer;
   }
   
   /* Hamburger Menu */
@@ -96,7 +98,7 @@
   
     .nav-bar ul {
       flex-direction: column;
-      padding: 0;
+      padding: 20px;
     }
   
     .hamburger {

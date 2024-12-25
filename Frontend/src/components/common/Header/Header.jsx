@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Marketplace from '../../pages/MarketPlace/MarketPlace.jsx';
+
 import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleNavigation = (path) => {
+    setIsMenuOpen(false); 
+    navigate('/marketplace');
+  };
+
+  const handleHomeNavigation = (path) => {
+    setIsMenuOpen(false);
+    navigate('/')
+  }
 
   return (
     <>
@@ -16,10 +30,10 @@ const Header = () => {
         </div>
         <nav className={`nav-bar ${isMenuOpen ? 'open' : ''}`}>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#marketplaces">Marketplaces</a></li>
-            <li><a href="#e-farming">E-Farming</a></li>
-            <li><a href="#sales">Contact Us</a></li>
+            <li onClick={() => handleHomeNavigation('/')}>Home</li>
+            <li onClick={() => handleNavigation('/marketplace')}>Marketplaces</li>
+            <li>E-Farming</li>
+            <li>Contact Us</li>
           </ul>
         </nav>
         <div className="hamburger" onClick={toggleMenu}>

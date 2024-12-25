@@ -1,0 +1,196 @@
+/* General Layout */
+.home-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cta-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Features Section */
+  .features-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .features-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .features-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .feature {
+    background-color: #d5ebd7;
+    padding: 20px;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  .feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Marketplace Section */
+  .marketplace-section {
+    padding: 50px 20px;
+  }
+  
+  .marketplace-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .product-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+  
+  .product-card .price {
+    color: #4caf50;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .details-button,
+  .cart-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .details-button {
+    background-color: #2196f3;
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .cart-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  /* Testimonials Section */
+  .testimonials-section {
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .testimonials-section blockquote {
+    font-style: italic;
+    margin: 20px 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    /* Hero Section */
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+    
+    .hero-section p {
+      font-size: 1rem;
+    }
+  
+    .cta-button {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+  
+    /* Features Section */
+    .features-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .feature {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 15px;
+    }
+  
+    /* Marketplace Section */
+    .product-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .product-card {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-section h1 {
+      font-size: 1.8rem;
+    }
+  
+    .hero-section p {
+      font-size: 0.9rem;
+    }
+  
+    /* Buttons */
+    .details-button,
+    .cart-button {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  }
+  
