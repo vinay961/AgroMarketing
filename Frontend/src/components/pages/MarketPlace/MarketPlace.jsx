@@ -166,7 +166,7 @@ const Marketplace = () => {
       <div className="marketplace-products">
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
-            <div key={product._id} className="product-card">
+            <div key={product._id} className="product-cards">
               <img src={product.productImage} alt={product.productName} className="product-image" />
               <h3 className="product-name">{product.productName}</h3>
               <p className="product-price">₹{product.price} /-</p>

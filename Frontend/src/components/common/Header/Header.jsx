@@ -12,14 +12,24 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleNavigation = (path) => {
+  const handleMarketNavigation = (path) => {
     setIsMenuOpen(false); 
-    navigate('/marketplace');
+    navigate(path);
   };
 
   const handleHomeNavigation = (path) => {
     setIsMenuOpen(false);
-    navigate('/')
+    navigate(path)
+  }
+
+  const handleContactNavigation = (path) => {
+    setIsMenuOpen(false)
+    navigate(path)
+  }
+
+  const handleEfarmingNavigation = (path) =>{
+    setIsMenuOpen(false)
+    navigate(path)
   }
 
   return (
@@ -31,9 +41,9 @@ const Header = () => {
         <nav className={`nav-bar ${isMenuOpen ? 'open' : ''}`}>
           <ul>
             <li onClick={() => handleHomeNavigation('/')}>Home</li>
-            <li onClick={() => handleNavigation('/marketplace')}>Marketplaces</li>
-            <li>E-Farming</li>
-            <li>Contact Us</li>
+            <li onClick={() => handleMarketNavigation('/marketplace')}>Marketplaces</li>
+            <li onClick={() => handleEfarmingNavigation('/efarming')}>E-Farming</li>
+            <li onClick={()=> handleContactNavigation('/contactus')} >Contact Us</li>
           </ul>
         </nav>
         <div className="hamburger" onClick={toggleMenu}>

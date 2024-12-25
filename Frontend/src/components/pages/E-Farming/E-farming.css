@@ -1,0 +1,273 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9fafb;
+  }
+  
+  /* Header Section */
+  .efarming-header {
+    background-color: #4caf50;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    /* border-radius: 10px; */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .efarming-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  
+  .efarming-header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+  
+  /* How to Grow Your Business Section */
+  .efarming-grow-business {
+    margin: 60px 20px;
+    text-align: center;
+  }
+  
+  .efarming-grow-business h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  .business-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+  }
+  
+  .tip-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .tip-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .tip-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .tip-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .tip-card .btn-view {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .tip-card .btn-view:hover {
+    background-color: #45a049;
+  }
+  
+  /* Educational Resources Section */
+  .efarming-resources {
+    margin: 60px 20px;
+    text-align: center;
+  }
+  
+  .efarming-resources h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  .resource-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+  }
+  
+  .resource-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    padding: 25px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .resource-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .resource-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .resource-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .resource-card .btn-learn-more {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .resource-card .btn-learn-more:hover {
+    background-color: #45a049;
+  }
+  
+  /* Latest News Section */
+  .efarming-news {
+    margin: 60px 20px;
+    text-align: center;
+  }
+  
+  .efarming-news h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  .news-articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+  }
+  
+  .news-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .news-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .news-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .news-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .news-card .btn-read-more {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .news-card .btn-read-more:hover {
+    background-color: #45a049;
+  }
+  
+  /* Success Stories Section */
+  .efarming-success-stories {
+    margin: 60px 20px;
+    text-align: center;
+  }
+  
+  .efarming-success-stories h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  .success-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+  }
+  
+  .success-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-top: 15px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .success-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .success-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .success-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .success-card .btn-read-more {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .success-card .btn-read-more:hover {
+    background-color: #45a049;
+  }
+  
+  /* Footer Section */
+  .efarming-footer {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 60px;
+  }
+  

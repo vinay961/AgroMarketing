@@ -39,7 +39,7 @@
   .features-section {
     text-align: center;
     padding: 50px 20px;
-    background-color: #f9f9f9;
+    background-color: #f1f1f1;
   }
   
   .features-section h2 {
@@ -58,7 +58,7 @@
     background-color: #d5ebd7;
     padding: 20px;
     border-radius: 5px;
-    width: 200px;
+    width: 250px;
   }
   
   .feature h3 {
@@ -88,7 +88,7 @@
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 250px;
+    width: 300px;
     text-align: center;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -166,6 +166,12 @@
     }
   
     /* Marketplace Section */
+    .marketplace-section{
+      height: 550px; 
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+    
     .product-list {
       flex-direction: column;
       align-items: center;

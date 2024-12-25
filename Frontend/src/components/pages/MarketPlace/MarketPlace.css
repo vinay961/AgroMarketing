@@ -38,12 +38,13 @@
     gap: 20px;
   }
   
-  .product-card {
+  .product-cards {
     background: #fff;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
   
   .product-image {
@@ -139,4 +140,3 @@
     color: white;
     border-color: blue;
   }
-  
