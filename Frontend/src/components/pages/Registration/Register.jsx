@@ -7,7 +7,7 @@ const RegisterPage = ({ isLoggedIn }) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/'); // Redirect to the home page if already logged in
+      navigate('/'); 
     }
   }, [isLoggedIn, navigate]);
 
