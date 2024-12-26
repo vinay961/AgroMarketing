@@ -6,6 +6,8 @@ import Marketplace from './components/pages/MarketPlace/MarketPlace.jsx';
 import Home from './components/pages/HomePage/HomePage.jsx';
 import ContactUs from './components/pages/ContactUs/ContactUs.jsx';
 import EFarmingPage from './components/pages/E-Farming/E-farming.jsx';
+import LoginPage from './components/pages/Login/Login.jsx';
+import RegisterPage from './components/pages/Registration/Register.jsx';
 
 function App() {
   const location = useLocation(); // Hook to get the current location (URL)
@@ -18,6 +20,8 @@ function App() {
         <Route path="/marketplace" element={<Marketplace />} /> 
         <Route path="/contactus" element={<ContactUs />} />
         <Route path='efarming' element={<EFarmingPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
       </Routes>
 
       {/* Conditionally render Footer based on the current route */}

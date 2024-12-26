@@ -1,0 +1,132 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+  } */
+  
+  /* Container */
+  .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Register Card */
+  .register-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Title */
+  .register-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #4caf50;
+  }
+  
+  .register-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #666;
+  }
+  
+  /* Form */
+  .register-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .register-form .form-group label {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+  }
+  
+  .register-form .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .register-form .form-group input:focus {
+    border-color: #4caf50;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+  }
+  
+  /* Button */
+  .register-btn {
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .register-btn:hover {
+    background-color: #43a047;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+  }
+  
+  /* Footer Links */
+  .register-footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .register-footer a {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .register-footer a:hover {
+    color: #388e3c;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .register-card {
+      padding: 30px 20px;
+    }
+  
+    .register-title {
+      font-size: 2rem;
+    }
+  
+    .register-subtitle {
+      font-size: 1rem;
+    }
+  }
+  

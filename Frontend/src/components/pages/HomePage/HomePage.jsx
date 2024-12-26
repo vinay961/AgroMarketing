@@ -1,5 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button.jsx';
+
 
 import './HomePage.css';
 
@@ -46,7 +48,7 @@ const Home = () => {
       <section className="hero-section">
         <h1>Empowering Farmers, Connecting Markets</h1>
         <p>Sell your produce directly, learn about e-farming, and grow your business with ease.</p>
-        <Button text={"Get Started"} />
+        <Button text={"Get Started"} url={'/login'} />
       </section>
 
       {/* Key Features Section */}

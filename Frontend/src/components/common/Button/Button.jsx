@@ -1,9 +1,13 @@
 import React from 'react';
-import './Button.css'; 
+import './Button.css';
 
-const Button = ({ text, onClick, className }) => {
+import { useNavigate } from 'react-router-dom';
+
+
+const Button = ({ text, url, className }) => {
+  const navigate = useNavigate()
   return (
-    <button onClick={onClick} className={`custom-button ${className}`}>
+    <button onClick={() => navigate(url)} className={`custom-button ${className}`}>
       {text}
     </button>
   );
