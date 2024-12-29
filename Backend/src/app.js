@@ -10,5 +10,8 @@ app.use(express.urlencoded({extended:true})) // this middleware help to parse th
 // app.use(express.static("public")) // this middleware is used to server static files such as images,css files, javascript files, etc. from the specified directory
 app.use(cookieParser())
 
+import userRouter from './Router/user.router.js';
+app.use('/users',userRouter)
+
 export {app}
 

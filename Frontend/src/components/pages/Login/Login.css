@@ -118,6 +118,41 @@
   .login-footer a:hover {
     color: #388e3c;
   }
+
+  .link-button {
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+  }
+  .link-button:hover {
+    color: darkblue;
+  }
+  
+  .popup-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 1000;
+  }
+  
+  .popup-message.success {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .popup-message.error {
+    background-color: #f44336;
+    color: white;
+  }
+  
   
   /* Responsive Design */
   @media (max-width: 480px) {

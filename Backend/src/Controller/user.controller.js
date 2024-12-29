@@ -45,5 +45,29 @@ const login = asyncHandler(async(req,res) => {
         throw new ApiError(404,"Incorrect Password")
     }
 
-    res.status(201).json(new ApiResponse(201,{},"Login successfull!!"))
+    return res
+        .status(201)
+        .json(new ApiResponse(201,{},"Login successfull!!"))
 })
+
+const logout = asyncHandler(async(req,res) => {
+
+})
+
+const getUser = asyncHandler(async(req,res) => {
+
+})
+
+const changePassword = asyncHandler(async(req,res) => {
+
+})
+
+const editUser = asyncHandler(async(req,res) => {
+    
+})
+
+
+export {
+    registerUser,
+    login
+}
