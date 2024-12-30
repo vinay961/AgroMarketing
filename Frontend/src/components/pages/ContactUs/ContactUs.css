@@ -17,6 +17,7 @@
     max-width: 1200px;
     width: 100%;
     box-sizing: border-box;
+    animation: fadeIn 1s ease-in-out;
 }
 
 /* Title Styling */

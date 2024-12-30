@@ -10,6 +10,10 @@
     background-color: #f9fafb;
   }
   
+  .efarming-page{
+    animation: fadeIn 1s ease-in-out;
+  }
+
   /* Header Section */
   .efarming-header {
     background-color: #4caf50;
