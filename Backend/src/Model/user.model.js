@@ -19,6 +19,9 @@ const userSchema = new Schema({
     password:{
         type:String,
         required:[true,"password is required."]
+    },
+    accessToken:{
+        type:String
     }
 },{timestamps:true})
 
@@ -33,6 +36,22 @@ userSchema.pre("save",async function(next){
 
 userSchema.methods.isPasswordCorrect = async function(password){
     return bcrypt.compare(password,this.password)
+}
+
+userSchema.methods.generateToken = function(){
+    const token = jwt.sign(
+        {
+            _id:this._id,
+            name:this.name,
+            email:this.email
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn:'1h'
+        }
+    )
+    console.log(token);
+    return token
 }
 
 export const User = mongoose.model("user",userSchema)

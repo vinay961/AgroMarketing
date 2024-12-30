@@ -4,6 +4,19 @@ import { asyncHandler } from "../utils/AsyncHandler.js";
 
 import { User } from "../Model/user.model.js";
 
+
+const generateAccessToken = async(userId) => {
+    try {
+        const user = await User.findById(userId)
+        const accessToken = user.generateToken()
+        user.accessToken = accessToken
+        await user.save({validateBeforeSave:false})
+        return accessToken
+    } catch (error) {
+        throw new ApiError(401,"Error while generating token.")
+    }
+}
+
 const registerUser = asyncHandler(async(req,res) => {
     const { name,email,password } = req.body;
     if([name,email,password].some((field) => {field.trim() === ""})){
@@ -44,10 +57,18 @@ const login = asyncHandler(async(req,res) => {
     if(!isPasswordCorrect){
         throw new ApiError(404,"Incorrect Password")
     }
+    const token = await generateAccessToken(existedUser._id)
+    const loggedInUser = await User.findById(existedUser._id).select("-password")
+    const options = {
+        httpOnly:true,
+        secure:true,
+        sameSite:'None'
+    }
 
     return res
         .status(201)
-        .json(new ApiResponse(201,{},"Login successfull!!"))
+        .cookie("accessToken",token,options)
+        .json(new ApiResponse(201,{loggedInUser},"Login successfull!!"))
 })
 
 const logout = asyncHandler(async(req,res) => {
@@ -63,11 +84,25 @@ const changePassword = asyncHandler(async(req,res) => {
 })
 
 const editUser = asyncHandler(async(req,res) => {
-    
+    const userId = req.user?._id
+    const user = await User.findById(userId)
+    if(!user){
+        throw new ApiError(404,"User not found!!")
+    }
+
+    const {name,email,phone} = req.body
+    user.name = name
+    user.email = email
+    await user.save({validateBeforeSave:false})
+
+    res
+       .status(201)
+       .json(new ApiResponse(201,{},"Profile Updated Successfully"))
 })
 
 
 export {
     registerUser,
-    login
+    login,
+    editUser
 }

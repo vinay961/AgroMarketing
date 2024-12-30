@@ -7,6 +7,9 @@ import './HomePage.css';
 
 
 const Home = () => {
+
+  const userInfo = localStorage.getItem('userInfo');
+
   const products = [
     {
       id: 1,
@@ -43,12 +46,16 @@ const Home = () => {
   ];
 
   return (
+    
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero-section">
         <h1>Empowering Farmers, Connecting Markets</h1>
         <p>Sell your produce directly, learn about e-farming, and grow your business with ease.</p>
-        <Button text={"Get Started"} url={'/login'} />
+        <Button 
+          text={ userInfo ? "Go To Dashboard" : "Get Started"} 
+          url={ userInfo ? '/userdashboard' : '/login'} 
+        />
       </section>
 
       {/* Key Features Section */}

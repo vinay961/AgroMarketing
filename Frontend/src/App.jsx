@@ -26,7 +26,6 @@ function App() {
         <Route path='/userdashboard' element={<UserDashboard />} />
       </Routes>
 
-      {/* Conditionally render Footer based on the current route */}
       {location.pathname !== '/contactus' && <Footer />}
     </>
   );

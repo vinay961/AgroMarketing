@@ -23,13 +23,16 @@ const LoginPage = () => {
         {
           header:{
             'Content-Type': 'application/json'
-          }
+          },
+          withCredentials:true
         }
       )
+
+      localStorage.setItem("userInfo", JSON.stringify(response.data.data.loggedInUser))
       setMessage('Login successful!');
       setMessageType('success');
-      console.log("Login successful!", response.data);
-      setTimeout(()=> navigate('/'),1500)
+      console.log(response.data);
+      setTimeout(()=> navigate('/userdashboard'),1500)
 
     } catch (error) {
 
