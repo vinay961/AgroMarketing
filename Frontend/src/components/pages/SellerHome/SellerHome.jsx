@@ -5,6 +5,16 @@ import { useNavigate } from "react-router-dom";
 const SellerHome = () => {
   const navigate = useNavigate();
 
+  const handleProfileAndForm = () => {
+    const businessDetails = localStorage.getItem("businessDetails")
+    if(!businessDetails){
+      navigate('/businessdetailform')
+    }
+    else{
+      navigate('/sellerprofile')
+    }
+  }
+
   return (
     <div className="seller-home-container">
       <header className="seller-header">
@@ -28,10 +38,10 @@ const SellerHome = () => {
           <h3>Track Orders</h3>
           <p>View and manage all your orders.</p>
         </div>
-        <div className="dashboard-card" onClick={() => navigate("/profile")}>
+        <div className="dashboard-card" onClick={() => handleProfileAndForm()}>
           <img src="profile-icon.png" alt="Profile" />
           <h3>Profile</h3>
-          <p>Update your business profile details.</p>
+          <p>Create or Update your business profile details.</p>
         </div>
       </div>
 

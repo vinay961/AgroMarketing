@@ -207,7 +207,7 @@ function UserDashboard() {
               <a href="/efarming">Learn About Agro Practices</a>
             </li>
             <li>
-              <a href="/sellerhome">Grow your business with us</a>
+              <a href="/sellerhome">Start your business with us</a>
             </li>
             <li>
               <a href="/contactus">Customer Support</a>

@@ -1,0 +1,119 @@
+/* Main Container */
+.business-details-form-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #ffffff; 
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    font-family: 'Poppins', sans-serif; 
+    overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Header Styling */
+.business-details-form-header {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50; 
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.business-details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+/* Form Group */
+.business-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+}
+
+.business-form-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #34495e; 
+}
+
+.business-form-group input,
+.business-form-group textarea,
+.business-form-group select {
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #ffffff; 
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.business-form-group textarea {
+    resize: vertical;
+    min-height: 100px; 
+}
+
+/* Placeholder Styling */
+.business-form-group input::placeholder,
+.business-form-group textarea::placeholder {
+    color: #aaa; 
+}
+
+/* Submit Button */
+.business-details-submit-btn {
+    padding: 12px 18px; 
+    font-size: 1rem;
+    color: #fff;
+    background-color: #2980b9; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.business-details-submit-btn:hover {
+    background-color: #21618c; 
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .business-details-form-container {
+        padding: 15px;
+    }
+
+    .business-details-form-header {
+        font-size: 1.6rem; 
+    }
+
+    .business-details-submit-btn {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Borders and Lines */
+.business-form-group input:focus,
+.business-form-group textarea:focus,
+.business-form-group select:focus {
+    outline: none;
+    border-color: #2980b9; 
+    background: rgba(41, 128, 185, 0.05);
+    box-shadow: 0 0 10px rgba(41, 128, 185, 0.3);
+}

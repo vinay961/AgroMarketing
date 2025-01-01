@@ -1,0 +1,197 @@
+/* General Container */
+.seller_profile-container {
+  background-color: #f9f9fc;
+  padding: 30px;
+  min-height: 100vh;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Header */
+.seller_profile-header {
+  text-align: center;
+  color: #20cb20;
+  margin-bottom: 20px;
+}
+
+/* Profile Details */
+.seller_profile-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Left Section (Basic Info) */
+.seller_profile-left {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex: 1;
+  max-width: 350px;
+}
+
+.seller_profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #20cb20;
+}
+
+.seller-edit-profile-btn {
+  background-color: #20cb20;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.seller-edit-profile-btn:hover {
+  background-color: #1da01d;
+}
+
+/* Add styles for edit and save functionality */
+.edit-business-btn,
+.save-business-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-business-btn:hover,
+.save-business-btn:hover {
+  background-color: #0056b3;
+}
+
+.edit-field {
+  margin: 10px 0;
+}
+
+.edit-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-field input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.edit-field input:focus {
+  outline: none;
+  border-color: #20cb20;
+  box-shadow: 0 0 5px rgba(32, 203, 32, 0.5);
+}
+
+/* Improved Edit Button Style */
+.edit-business-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: auto;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-business-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Save Button */
+.save-business-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-business-btn:hover {
+  background-color: #1e7e34;
+  transform: scale(1.05);
+}
+
+/* Align Edit Button with the Header */
+.seller-profile-right h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Right Section (Details and Buttons) */
+.seller-profile-right {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 2;
+}
+
+.profile-btn,
+.change-password-btn,
+.seller-logout-btn {
+  display: block;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 10px 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+.profile-btn:hover,
+.change-password-btn:hover {
+  background-color: #043b75;
+}
+
+.seller-logout-btn {
+  background-color: #d9534f;
+}
+
+.seller-logout-btn:hover {
+  background-color: #c9302c;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .seller_profile-details {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .seller-profile-left,
+  .seller-profile-right {
+      max-width: 100%;
+  }
+}

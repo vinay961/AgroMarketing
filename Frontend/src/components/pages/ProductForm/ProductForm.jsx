@@ -101,12 +101,12 @@ function ProductForm() {
         <div className="form-group">
           <label htmlFor="image">Image URL</label>
           <input
-            type="url"
+            type="file"
             id="image"
             name="image"
             value={formData.image}
             onChange={handleChange}
-            placeholder="Enter image URL"
+            placeholder="Select Image"
           />
         </div>
 
