@@ -28,8 +28,8 @@ const SellerHome = () => {
           <h3>Add Products</h3>
           <p>Add new products to your inventory with ease.</p>
         </div>
-        <div className="dashboard-card" onClick={() => navigate("/manage-products")}>
-          <img src="manage-products-icon.png" alt="Manage Products" />
+        <div className="dashboard-card" onClick={() => navigate("/userproducts")}>
+          <img src="manage-products-icon.png" alt="user-product" />
           <h3>Manage Products</h3>
           <p>Edit or delete your listed products.</p>
         </div>

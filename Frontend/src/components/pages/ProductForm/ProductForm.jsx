@@ -1,16 +1,20 @@
 // ProductForm.jsx
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 import "./ProductForm.css";
 
 function ProductForm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: "",
     category: "",
     desc: "",
     price: "",
     quantity: "",
-    image: "",
   });
+
+  const [image,setImage] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +24,39 @@ function ProductForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0])
+  }
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    // Add logic to send data to backend
+    
+    const data = new FormData()
+    data.append("name",formData.name)
+    data.append("category",formData.category)
+    data.append("desc",formData.desc)
+    data.append("price",formData.price)
+    data.append("quantity",formData.quantity)
+    if(image){
+      data.append("image",image)
+    }
+
+    try {
+      const response = await axios.post("http://localhost:2100/product/addproduct",data,
+        {
+          header:{
+            'Content-Type':'multipart/form-data'
+          },
+          withCredentials:true
+        },        
+      )
+      console.log("Product Added Successfully:", response.data);
+      alert("Product added successfully!");
+      setTimeout(()=> navigate('/sellerhome'),1000)
+    } catch (error) {
+      console.error("Error adding product:", error);
+      alert("Failed to add product. Please try again.");
+    }
   };
 
   return (
@@ -104,8 +137,7 @@ function ProductForm() {
             type="file"
             id="image"
             name="image"
-            value={formData.image}
-            onChange={handleChange}
+            onChange={handleImageChange}
             placeholder="Select Image"
           />
         </div>

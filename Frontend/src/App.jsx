@@ -13,6 +13,7 @@ import SellerProductForm from './components/pages/ProductForm/ProductForm.jsx';
 import SellerHome from './components/pages/SellerHome/SellerHome.jsx';
 import SellerDashboard from './components/pages/SellerDashboard/SellerDashboard.jsx';
 import BusinessDetailsForm from './components/pages/BusinessDetail/BusinessDetail.jsx';
+import UserProducts from './components/pages/UserProduct/UserProducts.jsx';
 
 function App() {
   const location = useLocation(); // Hook to get the current location (URL)
@@ -32,6 +33,7 @@ function App() {
         <Route path='/sellerhome' element={<SellerHome />} />
         <Route path='/sellerprofile' element={<SellerDashboard />} />
         <Route path='/businessdetailform' element={<BusinessDetailsForm/>} />
+        <Route path='/userproducts' element={<UserProducts />} />
       </Routes>
 
       {location.pathname !== '/contactus' && <Footer />}

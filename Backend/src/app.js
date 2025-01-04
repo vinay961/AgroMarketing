@@ -13,5 +13,8 @@ app.use(cookieParser())
 import userRouter from './Router/user.router.js';
 app.use('/users',userRouter)
 
+import productRouter from './Router/product.router.js'
+app.use('/product',productRouter)
+
 export {app}
 
