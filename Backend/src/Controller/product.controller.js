@@ -49,7 +49,7 @@ const editProduct = asyncHandler(async()=>{
 
 })
 
-const deleteProduct = asyncHandler(async()=>{
+const deleteProduct = asyncHandler(async(req,res)=>{
     const productId = req.params.id
     if(!productId){
         throw new ApiError(404,"Product Id not found.");

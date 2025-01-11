@@ -10,7 +10,7 @@ const router = Router()
 router.route('/addproduct').post(verifyJWT, upload.single("image"), addProduct)
 router.route('/getproduct').get(getProduct)
 router.route('/getuserproduct').get(verifyJWT,getSpecificUserProduct)
-router.route('/deleteproduct').delete(verifyJWT,deleteProduct)
+router.route('/deleteproduct/:id').delete(verifyJWT,deleteProduct)
 
 
 export default router

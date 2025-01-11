@@ -24,22 +24,22 @@ const SellerHome = () => {
 
       <div className="seller-dashboard">
         <div className="dashboard-card" onClick={() => navigate("/addproduct")}>
-          <img src="add-product-icon.png" alt="Add Product" />
+          <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/add-product-2489220-2086170.png" alt="Add Product" />
           <h3>Add Products</h3>
           <p>Add new products to your inventory with ease.</p>
         </div>
         <div className="dashboard-card" onClick={() => navigate("/userproducts")}>
-          <img src="manage-products-icon.png" alt="user-product" />
+          <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/product-management-19-1146665.png" alt="user-product" />
           <h3>Manage Products</h3>
           <p>Edit or delete your listed products.</p>
         </div>
         <div className="dashboard-card" onClick={() => navigate("/order-history")}>
-          <img src="track-orders-icon.png" alt="Track Orders" />
+          <img src="https://icon-library.com/images/track-order-icon/track-order-icon-18.jpg" alt="Track Orders" />
           <h3>Track Orders</h3>
           <p>View and manage all your orders.</p>
         </div>
         <div className="dashboard-card" onClick={() => handleProfileAndForm()}>
-          <img src="profile-icon.png" alt="Profile" />
+          <img src="https://logodix.com/logo/1984203.png" alt="Profile" />
           <h3>Profile</h3>
           <p>Create or Update your business profile details.</p>
         </div>

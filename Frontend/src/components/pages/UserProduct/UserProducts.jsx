@@ -1,44 +1,182 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./UserProducts.css";
 
 const UserProducts = () => {
-  const products = [
-    { id: 1, name: "Fresh Strawberries", category: "Fruits", price: 250, quantity: 40, image: "https://via.placeholder.com/150" },
-    { id: 2, name: "Organic Spinach", category: "Vegetables", price: 80, quantity: 100, image: "https://via.placeholder.com/150" },
-    { id: 3, name: "Golden Bananas", category: "Fruits", price: 50, quantity: 120, image: "https://via.placeholder.com/150" },
-    { id: 4, name: "Tomatoes", category: "Vegetables", price: 30, quantity: 200, image: "https://via.placeholder.com/150" },
-    { id: 5, name: "Blueberries", category: "Fruits", price: 300, quantity: 50, image: "https://via.placeholder.com/150" },
-    { id: 6, name: "Carrots", category: "Vegetables", price: 40, quantity: 150, image: "https://via.placeholder.com/150" },
-  ];
+  const [product, setProduct] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState(null);
 
-  const handleEdit = (id) => {
-    console.log(`Edit product with id: ${id}`);
+  const fetchProduct = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:2100/product/getuserproduct",
+        { withCredentials: true }
+      );
+      setProduct(response.data.data);
+    } catch (error) {
+      console.error(
+        "Product fetching failed!",
+        error.response?.data || error.message
+      );
+    }
   };
 
-  const handleDelete = (id) => {
-    console.log(`Delete product with id: ${id}`);
+  const handleEdit = (product) => {
+    setCurrentProduct(product);
+    setIsModalOpen(true);
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:2100/product/deleteproduct/${id}`,
+        { withCredentials: true }
+      );
+      alert(response.data.message);
+      setProduct((prevProducts) =>
+        prevProducts.filter((product) => product._id !== id)
+      );
+    } catch (error) {
+      console.error(
+        "Product deletion failed!",
+        error.response?.data || error.message
+      );
+    }
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setCurrentProduct(null);
+  };
+
+  const handleModalSave = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:2100/product/updateproduct/${currentProduct._id}`,
+        currentProduct,
+        { withCredentials: true }
+      );
+      alert(response.data.message);
+      setProduct((prevProducts) =>
+        prevProducts.map((p) =>
+          p._id === currentProduct._id ? currentProduct : p
+        )
+      );
+      handleModalClose();
+    } catch (error) {
+      console.error(
+        "Product update failed!",
+        error.response?.data || error.message
+      );
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setCurrentProduct({
+      ...currentProduct,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  function toTileCase(inputString) {
+    return inputString
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
 
   return (
     <div className="carousel-container">
       <h1 className="title">Your Products</h1>
       <div className="carousel">
-        {products.map((product) => (
-          <div key={product.id} className="carousel-card">
-            <img src={product.image} alt={product.name} className="product-image" />
+        {product.map((p) => (
+          <div key={p._id} className="carousel-card">
+            <img src={p.image} alt={p.name} className="product-image" />
             <div className="product-info">
-              <h3 className="product-name">{product.name}</h3>
-              <p className="product-category">Category: {product.category}</p>
-              <p className="product-price">Price: ₹{product.price}</p>
-              <p className="product-quantity">Quantity: {product.quantity}</p>
+              <h3 className="product-name">{toTileCase(p.name)}</h3>
+              <p className="product-category">Category: {p.category}</p>
+              <p className="product-price">Price: ₹{p.price}</p>
+              <p className="product-quantity">Quantity: {p.quantity}</p>
               <div className="product-actions">
-                <button className="edit-button" onClick={() => handleEdit(product.id)}>Edit</button>
-                <button className="delete-button" onClick={() => handleDelete(product.id)}>Delete</button>
+                <button
+                  className="edit-button"
+                  onClick={() => handleEdit(p)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDelete(p._id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={onClose}>
+              &times;
+            </span>
+            <h2>Edit Product</h2>
+            <form onSubmit={handleFormSubmit}>
+              <div className="modal-field">
+                <label>Product Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={currentProduct.name}
+                  onChange={handleInputChange}
+                  placeholder="Enter product name"
+                />
+              </div>
+              <div className="modal-field">
+                <label>Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  value={currentProduct.category}
+                  onChange={handleInputChange}
+                  placeholder="Enter category"
+                />
+              </div>
+              <div className="modal-field">
+                <label>Product Image</label>
+                <p className="image-url">
+                  {currentProduct.image || "No image available"}
+                </p>
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    setCurrentProduct({ ...currentProduct, newImage: file });
+                  }}
+                />
+              </div>
+              <div className="modal-actions">
+                <button type="submit" className="save-button">
+                  Save Changes
+                </button>
+                <button type="button" className="cancel-button" onClick={onClose}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>      
+      )}
     </div>
   );
 };
