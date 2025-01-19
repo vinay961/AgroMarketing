@@ -45,12 +45,30 @@ const getSpecificUserProduct = asyncHandler(async(req,res) => {
     res.status(201).json(new ApiResponse(201,products,"Products Fetched Sucessfully."))
 })
 
-const editProduct = asyncHandler(async()=>{
-
+const editProduct = asyncHandler(async(req,res)=>{
+    const {name,category} = req.body;
+    const productId = req.params.id;
+    if(!productId){
+        throw new ApiError(404,"Product doesn't exist!!")
+    }
+    let product = await Product.findById(productId)
+    if(name){
+        product.name = name;
+    }
+    if(category){
+        product.category = category;
+    }
+    if(req.file){
+        const localFilePath = req.file?.path;
+        const image = await uploadOnCloudinary(localFilePath);
+        product.image = image?.url;
+    }
+    await product.save({validateBeforeSave:false})
+    res.status(201).json(new ApiResponse(201,{},"Product Updated Sucessfully!!"))
 })
 
 const deleteProduct = asyncHandler(async(req,res)=>{
-    const productId = req.params.id
+    const productId = req.params.id;
     if(!productId){
         throw new ApiError(404,"Product Id not found.");
     }
@@ -64,5 +82,6 @@ export {
     addProduct,
     getProduct,
     getSpecificUserProduct,
-    deleteProduct
+    deleteProduct,
+    editProduct
 }

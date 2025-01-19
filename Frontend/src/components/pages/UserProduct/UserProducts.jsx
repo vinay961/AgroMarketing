@@ -50,17 +50,39 @@ const UserProducts = () => {
     setCurrentProduct(null);
   };
 
-  const handleModalSave = async () => {
+  const handleFormSubmit = async (e) => {
+    e.preventDefault(); 
     try {
-      const response = await axios.put(
-        `http://localhost:2100/product/updateproduct/${currentProduct._id}`,
-        currentProduct,
-        { withCredentials: true }
-      );
-      alert(response.data.message);
+      const updatedProduct = {
+        ...currentProduct,
+      };
+
+      if (currentProduct.newImage) {
+        const formData = new FormData();
+        formData.append("name", updatedProduct.name);
+        formData.append("category", updatedProduct.category);
+        formData.append("image", currentProduct.newImage);
+
+        const response = await axios.put(
+          `http://localhost:2100/product/updateproduct/${currentProduct._id}`,
+          formData,
+          { withCredentials: true }
+        );
+        console.log(response)
+        alert(response.data.message);
+      } else {
+        const response = await axios.put(
+          `http://localhost:2100/product/updateproduct/${currentProduct._id}`,
+          updatedProduct,
+          { withCredentials: true }
+        );
+
+        alert(response.data.message);
+      }
+
       setProduct((prevProducts) =>
         prevProducts.map((p) =>
-          p._id === currentProduct._id ? currentProduct : p
+          p._id === currentProduct._id ? updatedProduct : p
         )
       );
       handleModalClose();
@@ -125,7 +147,7 @@ const UserProducts = () => {
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={onClose}>
+            <span className="close" onClick={handleModalClose}>
               &times;
             </span>
             <h2>Edit Product</h2>
@@ -152,9 +174,6 @@ const UserProducts = () => {
               </div>
               <div className="modal-field">
                 <label>Product Image</label>
-                <p className="image-url">
-                  {currentProduct.image || "No image available"}
-                </p>
                 <input
                   type="file"
                   name="image"
@@ -169,13 +188,17 @@ const UserProducts = () => {
                 <button type="submit" className="save-button">
                   Save Changes
                 </button>
-                <button type="button" className="cancel-button" onClick={onClose}>
+                <button
+                  type="button"
+                  className="cancel-button"
+                  onClick={handleModalClose}
+                >
                   Cancel
                 </button>
               </div>
             </form>
           </div>
-        </div>      
+        </div>
       )}
     </div>
   );
