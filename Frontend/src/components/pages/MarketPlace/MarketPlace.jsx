@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext,useState } from 'react';
+import { CartContext } from '../../../services/CartContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import './Marketplace.css';
@@ -83,35 +84,9 @@ const Marketplace = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [cart, setCart] = useState({});
+  const { cart, addToCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
 
   const navigate = useNavigate();
-
-  const addToCart = (productId) => {
-    setCart((prevCart) => ({
-      ...prevCart,
-      [productId]: (prevCart[productId] || 0) + 1,
-    }));
-  };
-
-  const incrementQuantity = (productId) => {
-    setCart((prevCart) => ({
-      ...prevCart,
-      [productId]: prevCart[productId] + 1,
-    }));
-  };
-
-  const decrementQuantity = (productId) => {
-    setCart((prevCart) => {
-      const updatedCart = { ...prevCart };
-      if (updatedCart[productId] > 1) {
-        updatedCart[productId] -= 1;
-      } else {
-        delete updatedCart[productId];
-      }
-      return updatedCart;
-    });
-  };
 
   const handleViewCart = () => {
     navigate('/cart');
@@ -137,7 +112,7 @@ const Marketplace = () => {
     setCurrentPage(pageNumber);
   };
 
-  const totalItemsInCart = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
+  const totalItemsInCart = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div className="marketplace-container">
@@ -183,14 +158,14 @@ const Marketplace = () => {
                     <button onClick={() => decrementQuantity(product._id)} className="cart-button">
                       -
                     </button>
-                    <span className="cart-quantity">{cart[product._id]}</span>
+                    <span className="cart-quantity">{cart[product._id].quantity}</span>
                     <button onClick={() => incrementQuantity(product._id)} className="cart-button">
                       +
                     </button>
                   </div>
                 ) : (
                   <button
-                    onClick={() => addToCart(product._id)}
+                    onClick={() => addToCart(product)}
                     className="add-to-cart-button"
                   >
                     Add to Cart
