@@ -48,7 +48,6 @@ const Home = () => {
   return (
     
     <div className="home-container">
-      {/* Hero Section */}
       <section className="hero-section">
         <h1>Empowering Farmers, Connecting Markets</h1>
         <p>Sell your produce directly, learn about e-farming, and grow your business with ease.</p>
@@ -58,7 +57,6 @@ const Home = () => {
         />
       </section>
 
-      {/* Key Features Section */}
       <section className="features-section">
         <h2>Why Choose Us?</h2>
         <div className="features-grid">
@@ -81,7 +79,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Marketplace Preview Section */}
       <section className="marketplace-section">
         <h2>Explore Our Marketplace</h2>
         <div className="product-list">
@@ -99,7 +96,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="testimonials-section">
         <h2>What Our Farmers Say</h2>
         <blockquote>

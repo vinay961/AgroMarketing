@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 import "./BusinessDetail.css";
 
+
 const BusinessDetailsForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     businessName: "",
-    category: "",
-    location: "",
-    contactNumber: "",
-    email: "",
+    businessCategory: "",
+    businessLocation: "",
+    contact: "",
+    businessEmail: "",
   });
 
   const handleInputChange = (e) => {
@@ -15,11 +19,26 @@ const BusinessDetailsForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add functionality to send formData to the backend
-    console.log("Submitted Business Details:", formData);
-  };
+    try {
+      const response = await axios.post('http://localhost:2100/business/registerbusiness', formData);
+      if (response.status === 201) { 
+        console.log("Business registered successfully:", response);
+        setTimeout(() => navigate('/sellerprofile'), 1000);
+      } else {
+        console.error("Unexpected response status:", response.status);
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Backend responded with an error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received from the backend:", error.request);
+      } else {
+        console.error("Error in request setup:", error.message);
+      }
+    }
+  };  
 
   return (
     <div className="business-details-form-container">
@@ -43,8 +62,8 @@ const BusinessDetailsForm = () => {
           <input
             type="text"
             id="category"
-            name="category"
-            value={formData.category}
+            name="businessCategory"
+            value={formData.businessCategory}
             onChange={handleInputChange}
             placeholder="e.g., Organic Vegetables"
             required
@@ -56,8 +75,8 @@ const BusinessDetailsForm = () => {
           <input
             type="text"
             id="location"
-            name="location"
-            value={formData.location}
+            name="businessLocation"
+            value={formData.businessLocation}
             onChange={handleInputChange}
             placeholder="e.g., Bangalore, India"
             required
@@ -69,8 +88,8 @@ const BusinessDetailsForm = () => {
           <input
             type="tel"
             id="contactNumber"
-            name="contactNumber"
-            value={formData.contactNumber}
+            name="contact"
+            value={formData.contact}
             onChange={handleInputChange}
             placeholder="e.g., +91 9876543210"
             required
@@ -82,8 +101,8 @@ const BusinessDetailsForm = () => {
           <input
             type="email"
             id="email"
-            name="email"
-            value={formData.email}
+            name="businessEmail"
+            value={formData.businessEmail}
             onChange={handleInputChange}
             placeholder="Enter your email"
             required

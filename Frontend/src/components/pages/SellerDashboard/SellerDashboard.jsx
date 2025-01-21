@@ -20,7 +20,6 @@ const SellerDashboard = () => {
 
   const handleSave = () => {
     setIsEditing(false);
-    // Add functionality to save updated details to the backend if needed
     console.log("Updated Business Details:", businessDetails);
   };
 

@@ -16,5 +16,8 @@ app.use('/users',userRouter)
 import productRouter from './Router/product.router.js'
 app.use('/product',productRouter)
 
+import businessRouter from './Router/business.router.js'
+app.use('/business',businessRouter)
+
 export {app}
 

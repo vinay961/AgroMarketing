@@ -100,7 +100,6 @@ const editUser = asyncHandler(async(req,res) => {
        .json(new ApiResponse(201,{},"Profile Updated Successfully"))
 })
 
-
 export {
     registerUser,
     login,

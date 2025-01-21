@@ -11,7 +11,6 @@ const Cart = () => {
     id,
     ...cart[id],
   }));
-  console.log(cartArray);
 
   const totalPrice = cartArray.reduce(
     (total, item) => total + item.price * item.quantity,
