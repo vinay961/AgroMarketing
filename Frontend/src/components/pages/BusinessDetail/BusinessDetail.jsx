@@ -22,7 +22,7 @@ const BusinessDetailsForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:2100/business/registerbusiness', formData);
+      const response = await axios.post('http://localhost:2100/business/registerbusiness', formData, {withCredentials:true});
       if (response.status === 201) { 
         console.log("Business registered successfully:", response);
         setTimeout(() => navigate('/sellerprofile'), 1000);

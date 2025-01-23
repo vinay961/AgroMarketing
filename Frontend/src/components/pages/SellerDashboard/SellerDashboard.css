@@ -21,7 +21,6 @@
   flex-wrap: wrap;
 }
 
-/* Left Section (Basic Info) */
 .seller_profile-left {
   background: white;
   padding: 20px;
@@ -30,6 +29,7 @@
   text-align: center;
   flex: 1;
   max-width: 350px;
+
 }
 
 .seller_profile-picture {
@@ -193,5 +193,6 @@
   .seller-profile-left,
   .seller-profile-right {
       max-width: 100%;
+      width: -webkit-fill-available;
   }
 }

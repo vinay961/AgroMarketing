@@ -1,20 +1,24 @@
 import React from "react";
+import axios from 'axios';
 import "./SellerHome.css";
 import { useNavigate } from "react-router-dom";
 
 const SellerHome = () => {
   const navigate = useNavigate();
 
-  const handleProfileAndForm = () => {
-    const businessDetails = localStorage.getItem("businessDetails")
-    if(!businessDetails){
-      navigate('/businessdetailform')
+const handleProfileAndForm = async () => {
+  try {
+    const response = await axios.get("http://localhost:2100/business/getbusinessdetail", { withCredentials: true });
+    console.log(response);
+    if (response.status == 200) {
+      localStorage.setItem("businessDetails", JSON.stringify(response.data.data));
+      navigate('/sellerprofile');
     }
-    else{
-      navigate('/sellerprofile')
-    }
+  } catch (error) {
+    console.log(error);
+    navigate('/businessdetailform')
   }
-
+};  
   return (
     <div className="seller-home-container">
       <header className="seller-header">

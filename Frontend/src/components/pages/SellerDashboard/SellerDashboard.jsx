@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./SellerDashboard.css";
 
 const SellerDashboard = () => {
@@ -8,9 +8,32 @@ const SellerDashboard = () => {
     category: "Organic Vegetables",
     location: "Bangalore, India",
   });
+  const [userDetails,setUserDetails] = useState({
+    name:'John Doe',
+    email:'johndoe@example.com',
+    Phone:'+91 9876543210'
+  })
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
+  };
+
+  useEffect(()=>{
+    // fetching user business details
+    const details = JSON.parse(localStorage.getItem('businessDetails'));
+    setBusinessDetails({businessName:details.businessName,category:details.businessCategory,location:details.businessLocation})
+    // fetching user details
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+    setUserDetails({name:user.name,email:user.email,Phone:'+91 9876543210'})
+
+  },[])
+
+  const toTitleCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
 
   const handleInputChange = (e) => {
@@ -33,9 +56,9 @@ const SellerDashboard = () => {
             alt="Profile"
             className="seller_profile-picture"
           />
-          <h2>John Doe</h2>
-          <p>Email: johndoe@example.com</p>
-          <p>Phone: +91 9876543210</p>
+          <h2>{toTitleCase(userDetails.name)}</h2>
+          <p>Email: {userDetails.email}</p>
+          <p>Phone: {userDetails.Phone}</p>
           <button className="seller-edit-profile-btn">Edit Profile</button>
         </div>
 
@@ -54,9 +77,9 @@ const SellerDashboard = () => {
 
           {!isEditing ? (
             <div>
-              <p>Business Name: {businessDetails.businessName}</p>
-              <p>Category: {businessDetails.category}</p>
-              <p>Location: {businessDetails.location}</p>
+              <p>Business Name: <span style={{color:'green',fontFamily:'cursive'}}>{businessDetails.businessName}</span></p>
+              <p>Category: <span style={{color:'green',fontFamily:'cursive'}}>{businessDetails.category}</span></p>
+              <p>Location: <span style={{color:'green',fontFamily:'cursive'}}>{businessDetails.location}</span></p>
             </div>
           ) : (
             <div>
@@ -98,7 +121,6 @@ const SellerDashboard = () => {
 
           <h3>Quick Links</h3>
           <button className="profile-btn">View Pending Orders</button>
-          <button className="profile-btn">View Order History</button>
           <button className="profile-btn">Manage Products</button>
 
           <h3>Account Settings</h3>

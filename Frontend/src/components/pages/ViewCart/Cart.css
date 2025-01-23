@@ -9,7 +9,7 @@ body {
   
   /* Cart Page Container */
   .cart-container {
-    min-height: 100vh;
+    min-height: 53vh;
     display: flex;
     justify-content: center;
     align-items: center;
