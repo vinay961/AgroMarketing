@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import './ContactUs.css'; // Import the CSS file
+import './ContactUs.css';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -20,88 +20,84 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send data to backend)
-    alert('Message sent!');
+    alert('Thank you! Your message has been sent.');
   };
 
   return (
     <div className="contact-page">
-      <div className="contact-container">
-        <h1 className="contact-title">Contact Us</h1>
+      {/* Hero Section */}
+      <section className="contact-hero">
+        <h1 className="hero-title">We’d Love to Hear From You!</h1>
+        <p className="hero-subtitle">
+          Whether you have a question, feedback, or a business inquiry, our team is here to help.
+        </p>
+      </section>
 
-        <div className="contact-info">
-          <div className="contact-item">
-            <FaPhoneAlt className="contact-icon" />
-            <div className="contact-text">
-              <h2 className="contact-subtitle">Call Us</h2>
-              <p className="contact-detail">+1 234 567 890</p>
-            </div>
-          </div>
-
-          <div className="contact-item">
-            <FaEnvelope className="contact-icon" />
-            <div className="contact-text">
-              <h2 className="contact-subtitle">Email Us</h2>
-              <p className="contact-detail">vinayrai@agromarket.com</p>
-            </div>
-          </div>
-
-          <div className="contact-item">
-            <FaMapMarkerAlt className="contact-icon" />
-            <div className="contact-text">
-              <h2 className="contact-subtitle">Our Address</h2>
-              <p className="contact-detail">123 Main Street, Gurgaon, India</p>
-            </div>
-          </div>
+      {/* Contact Information */}
+      <section className="contact-info">
+        <div className="info-item">
+          <FaPhoneAlt className="info-icon" />
+          <h3>Call Us</h3>
+          <p>+1 234 567 890</p>
         </div>
-
-        <div className="contact-form">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name" className="form-label">Your Name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="form-input"
-                placeholder="Enter your name"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">Your Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="form-input"
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="message" className="form-label">Your Message</label>
-              <textarea
-                name="message"
-                id="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                className="form-textarea"
-                rows="5"
-                placeholder="Enter your message"
-                required
-              />
-            </div>
-
-            <button type="submit" className="form-button">Send Message</button>
-          </form>
+        <div className="info-item">
+          <FaEnvelope className="info-icon" />
+          <h3>Email Us</h3>
+          <p>vinayrai@agromarket.com</p>
         </div>
-      </div>
+        <div className="info-item">
+          <FaMapMarkerAlt className="info-icon" />
+          <h3>Visit Us</h3>
+          <p>123 Main Street, Gurgaon, India</p>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section className="contact-form">
+        <h2 className="form-heading">Send Us a Message</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name" className="form-label">Your Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="form-input"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Your Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="form-input"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message" className="form-label">Your Message</label>
+            <textarea
+              name="message"
+              id="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              className="form-textarea"
+              rows="5"
+              placeholder="Write your message"
+              required
+            />
+          </div>
+          <button type="submit" className="form-button">Send Message</button>
+        </form>
+      </section>
     </div>
   );
 };

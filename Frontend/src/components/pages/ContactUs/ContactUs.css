@@ -1,197 +1,211 @@
-/* General Page Styling */
+/* General Styles */
 .contact-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(231, 237, 226);
-    min-height: 100vh;
-    padding: 5px 20px;
-}
-
-/* Container for the page content */
-.contact-container {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 1200px;
-    width: 100%;
-    box-sizing: border-box;
-    animation: fadeIn 1s ease-in-out;
-}
-
-/* Title Styling */
-.contact-title {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    padding: 2rem;
+    line-height: 1.6;
+    background: #f9fafc;
+  }
+  
+  /* Hero Section */
+  .contact-hero {
     text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 40px;
-}
-
-/* Contact Info Section */
-.contact-info {
+    padding: 2.5rem 1rem;
+    background: linear-gradient(135deg, #ffffff, #f4f8fb);
+    border-radius: 12px;
+    margin-bottom: 3rem;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 1rem;
+  }
+  
+  /* Contact Information */
+  .contact-info {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    flex-wrap: wrap; /* Allow the items to wrap when needed */
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    max-width: 30%;
-    margin-bottom: 20px; /* Add spacing between items on smaller screens */
-    box-sizing: border-box;
-}
-
-.contact-icon {
-    font-size: 32px;
-    color: #4e73df;
-    margin-right: 15px;
-}
-
-.contact-text {
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .info-item {
+    flex: 1 1 30%;
+    text-align: center;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .info-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-icon {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+  }
+  
+  .info-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
     color: #333;
-}
-
-.contact-subtitle {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.contact-detail {
-    font-size: 16px;
-    color: #666;
-}
-
-/* Form Section */
-.contact-form {
-    margin-top: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-label {
-    font-size: 16px;
-    font-weight: 500;
+  }
+  
+  .info-item p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Contact Form */
+  .contact-form {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .form-heading {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
     color: #333;
-}
-
-.form-input,
-.form-textarea {
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .form-input,
+  .form-textarea {
     width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 16px;
-    color: #333;
-    margin-top: 8px;
-    box-sizing: border-box;
-}
-
-.form-textarea {
-    resize: vertical;
-}
-
-.form-button {
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: #007bff;
+  }
+  
+  .form-button {
+    display: block;
     width: 100%;
-    padding: 15px;
-    background-color: #4e73df;
+    padding: 0.8rem;
+    background: #007bff;
     color: #fff;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    transition: background 0.3s;
+  }
+  
+  .form-button:hover {
+    background: #0056b3;
+  }
 
-.form-button:hover {
-    background-color: #2e59d9;
-}
-
-.form-button:focus {
-    outline: none;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    /* Contact Info Section */
+  @media screen and (max-width: 767px) {
+    .contact-page {
+      padding: 1rem;
+    }
+  
+    .hero-title {
+      font-size: 2rem;
+      line-height: 1.3;
+    }
+  
+    .hero-subtitle {
+      font-size: 0.9rem;
+    }
+  
     .contact-info {
-        flex-direction: column;
-        align-items: center;
+      flex-direction: column;
     }
-
-    .contact-item {
-        max-width: 100%;
-        margin-bottom: 30px; /* Add more spacing on smaller screens */
-        text-align: center;
+  
+    .info-item {
+      width: 100%;
+      padding: 1.5rem;
+      text-align: left;
     }
-
-    .contact-icon {
-        font-size: 40px; /* Increase icon size on smaller screens */
-        margin-bottom: 10px; /* Add margin for spacing */
+  
+    .info-icon {
+      font-size: 2rem;
     }
-
-    .contact-subtitle {
-        font-size: 22px;
-    }
-
-    .contact-detail {
-        font-size: 14px; /* Adjust text size for readability */
-    }
-
-    /* Form Section */
+  
     .contact-form {
-        margin-top: 30px;
+      padding: 1.5rem 1rem;
     }
-
-    .form-group {
-        margin-bottom: 15px; /* Reduce the margin for smaller screens */
+  
+    .form-heading {
+      font-size: 1.5rem;
     }
-
-    .form-label {
-        font-size: 14px; /* Slightly reduce label size */
-    }
-
+  
     .form-input,
     .form-textarea {
-        padding: 12px;
-        font-size: 14px; /* Smaller font size for inputs */
+      font-size: 0.9rem;
+      padding: 0.7rem;
     }
-
+  
     .form-button {
-        font-size: 16px; /* Reduce font size for smaller screens */
+      font-size: 1rem;
+      padding: 0.7rem;
     }
-}
-
-/* Smaller mobile screens */
-@media (max-width: 480px) {
-    .contact-title {
-        font-size: 28px; /* Adjust title size for mobile screens */
+  }
+  
+  /* Extra Small Screens (max-width: 480px) */
+  @media screen and (max-width: 480px) {
+    .hero-title {
+      font-size: 1.8rem;
     }
-
-    .contact-info {
-        flex-direction: column;
-        align-items: center;
+  
+    .hero-subtitle {
+      font-size: 0.8rem;
     }
-
-    .contact-item {
-        max-width: 100%;
-        margin-bottom: 20px;
+  
+    .info-icon {
+      font-size: 1.8rem;
     }
-
+  
+    .form-heading {
+      font-size: 1.4rem;
+    }
+  
     .form-input,
     .form-textarea {
-        font-size: 14px; /* Further reduce the font size for smaller screens */
+      font-size: 0.85rem;
+      padding: 0.6rem;
     }
-
+  
     .form-button {
-        font-size: 14px; /* Adjust button font size */
-        padding: 12px;
+      font-size: 0.9rem;
+      padding: 0.6rem;
     }
-}
+  }

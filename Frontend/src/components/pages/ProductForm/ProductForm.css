@@ -2,10 +2,10 @@
 .seller-form-container {
   max-width: 800px;
   margin: 50px auto;
-  background: #ffffff; /* Matches earlier form's background */
+  background: #ffffff00; 
   padding: 25px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly softer shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -16,12 +16,12 @@
 
 .form-header h1 {
   font-size: 2rem;
-  color: #2c3e50; /* Darker text for a modern feel */
+  color: #2c3e50; 
 }
 
 .form-header p {
   font-size: 1rem;
-  color: #7f8c8d; /* Subtle text color */
+  color: #7f8c8d; 
 }
 
 .seller-form {
@@ -33,7 +33,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Consistent spacing */
+  gap: 8px; 
 }
 
 .form-group label {
@@ -61,7 +61,7 @@ textarea {
 }
 
 .form-row .form-group {
-  flex: 1; /* Equal distribution */
+  flex: 1; 
 }
 
 .submit-button {
@@ -94,6 +94,7 @@ textarea {
 @media (max-width: 480px) {
   .seller-form-container {
     padding: 15px;
+    width: fit-content;
   }
 
   .form-header h1 {

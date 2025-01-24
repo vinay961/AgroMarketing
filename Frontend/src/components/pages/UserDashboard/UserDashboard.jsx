@@ -92,6 +92,7 @@ function UserDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("businessDetails")
     navigate("/login");
   };
 
