@@ -9,7 +9,6 @@ const SellerHome = () => {
 const handleProfileAndForm = async () => {
   try {
     const response = await axios.get("http://localhost:2100/business/getbusinessdetail", { withCredentials: true });
-    console.log(response);
     if (response.status == 200) {
       localStorage.setItem("businessDetails", JSON.stringify(response.data.data));
       navigate('/sellerprofile');

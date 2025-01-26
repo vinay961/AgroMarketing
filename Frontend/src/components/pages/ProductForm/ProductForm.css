@@ -79,6 +79,13 @@ textarea {
   background-color: #21618c;
 }
 
+.loading-indicator {
+  color: #555;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .form-row {

@@ -28,12 +28,12 @@ const Cart = () => {
                 <div className="cart-item" key={item.id}>
                   <div className="cart-item-info">
                     <img
-                      src={item.productImage}
-                      alt={item.productName}
+                      src={item.image}
+                      alt={item.name}
                       className="cart-item-image"
                     />
                     <div>
-                      <h3 className="cart-item-name">{item.productName}</h3>
+                      <h3 className="cart-item-name">{item.name}</h3>
                       <p className="cart-item-price">₹{item.price}</p>
                     </div>
                   </div>

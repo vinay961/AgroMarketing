@@ -25,7 +25,7 @@ const BusinessDetailsForm = () => {
       const response = await axios.post('http://localhost:2100/business/registerbusiness', formData, {withCredentials:true});
       if (response.status === 201) { 
         console.log("Business registered successfully:", response);
-        setTimeout(() => navigate('/sellerprofile'), 1000);
+        setTimeout(() => navigate('/sellerhome'), 1000);
       } else {
         console.error("Unexpected response status:", response.status);
       }

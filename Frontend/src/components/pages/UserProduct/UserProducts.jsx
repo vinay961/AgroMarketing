@@ -6,8 +6,10 @@ const UserProducts = () => {
   const [product, setProduct] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [loading, setLoading] = useState(false); // New loading state
 
   const fetchProduct = async () => {
+    setLoading(true); // Start loading
     try {
       const response = await axios.get(
         "http://localhost:2100/product/getuserproduct",
@@ -19,6 +21,8 @@ const UserProducts = () => {
         "Product fetching failed!",
         error.response?.data || error.message
       );
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -28,6 +32,7 @@ const UserProducts = () => {
   };
 
   const handleDelete = async (id) => {
+    setLoading(true); // Start loading
     try {
       const response = await axios.delete(
         `http://localhost:2100/product/deleteproduct/${id}`,
@@ -42,6 +47,8 @@ const UserProducts = () => {
         "Product deletion failed!",
         error.response?.data || error.message
       );
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -51,7 +58,8 @@ const UserProducts = () => {
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
+    setLoading(true); // Start loading
     try {
       const updatedProduct = {
         ...currentProduct,
@@ -68,7 +76,6 @@ const UserProducts = () => {
           formData,
           { withCredentials: true }
         );
-        console.log(response)
         alert(response.data.message);
       } else {
         const response = await axios.put(
@@ -76,7 +83,6 @@ const UserProducts = () => {
           updatedProduct,
           { withCredentials: true }
         );
-
         alert(response.data.message);
       }
 
@@ -91,6 +97,8 @@ const UserProducts = () => {
         "Product update failed!",
         error.response?.data || error.message
       );
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -116,89 +124,99 @@ const UserProducts = () => {
   return (
     <div className="carousel-container">
       <h1 className="title">Your Products</h1>
-      <div className="carousel">
-        {product.map((p) => (
-          <div key={p._id} className="carousel-card">
-            <img src={p.image} alt={p.name} className="product-image" />
-            <div className="product-info">
-              <h3 className="product-name">{toTileCase(p.name)}</h3>
-              <p className="product-category">Category: {p.category}</p>
-              <p className="product-price">Price: ₹{p.price}</p>
-              <p className="product-quantity">Quantity: {p.quantity}</p>
-              <div className="product-actions">
-                <button
-                  className="edit-button"
-                  onClick={() => handleEdit(p)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(p._id)}
-                >
-                  Delete
-                </button>
+
+      {loading ? ( // Display loading spinner or text
+        <div className="loading-container">
+          <div className="spinner"></div> {/* Add a spinner if needed */}
+          <p>Loading...</p>
+        </div>
+      ) : (
+        <>
+          <div className="carousel">
+            {product.map((p) => (
+              <div key={p._id} className="carousel-card">
+                <img src={p.image} alt={p.name} className="product-image" />
+                <div className="product-info">
+                  <h3 className="product-name">{toTileCase(p.name)}</h3>
+                  <p className="product-category">Category: {p.category}</p>
+                  <p className="product-price">Price: ₹{p.price}</p>
+                  <p className="product-quantity">Quantity: {p.quantity}</p>
+                  <div className="product-actions">
+                    <button
+                      className="edit-button"
+                      onClick={() => handleEdit(p)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDelete(p._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {isModalOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <span className="close" onClick={handleModalClose}>
+                  &times;
+                </span>
+                <h2>Edit Product</h2>
+                <form onSubmit={handleFormSubmit}>
+                  <div className="modal-field">
+                    <label>Product Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={currentProduct.name}
+                      onChange={handleInputChange}
+                      placeholder="Enter product name"
+                    />
+                  </div>
+                  <div className="modal-field">
+                    <label>Category</label>
+                    <input
+                      type="text"
+                      name="category"
+                      value={currentProduct.category}
+                      onChange={handleInputChange}
+                      placeholder="Enter category"
+                    />
+                  </div>
+                  <div className="modal-field">
+                    <label>Product Image</label>
+                    <input
+                      type="file"
+                      name="image"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        setCurrentProduct({ ...currentProduct, newImage: file });
+                      }}
+                    />
+                  </div>
+                  <div className="modal-actions">
+                    <button type="submit" className="save-button">
+                      Save Changes
+                    </button>
+                    <button
+                      type="button"
+                      className="cancel-button"
+                      onClick={handleModalClose}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={handleModalClose}>
-              &times;
-            </span>
-            <h2>Edit Product</h2>
-            <form onSubmit={handleFormSubmit}>
-              <div className="modal-field">
-                <label>Product Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={currentProduct.name}
-                  onChange={handleInputChange}
-                  placeholder="Enter product name"
-                />
-              </div>
-              <div className="modal-field">
-                <label>Category</label>
-                <input
-                  type="text"
-                  name="category"
-                  value={currentProduct.category}
-                  onChange={handleInputChange}
-                  placeholder="Enter category"
-                />
-              </div>
-              <div className="modal-field">
-                <label>Product Image</label>
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files[0];
-                    setCurrentProduct({ ...currentProduct, newImage: file });
-                  }}
-                />
-              </div>
-              <div className="modal-actions">
-                <button type="submit" className="save-button">
-                  Save Changes
-                </button>
-                <button
-                  type="button"
-                  className="cancel-button"
-                  onClick={handleModalClose}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+          )}
+        </>
       )}
     </div>
   );

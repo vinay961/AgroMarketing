@@ -1,11 +1,10 @@
-// ProductForm.jsx
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./ProductForm.css";
 
 function ProductForm() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -14,7 +13,8 @@ function ProductForm() {
     quantity: "",
   });
 
-  const [image,setImage] = useState(null);
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false); // New state for loading
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,37 +25,42 @@ function ProductForm() {
   };
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0])
-  }
+    setImage(e.target.files[0]);
+  };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const data = new FormData()
-    data.append("name",formData.name)
-    data.append("category",formData.category)
-    data.append("desc",formData.desc)
-    data.append("price",formData.price)
-    data.append("quantity",formData.quantity)
-    if(image){
-      data.append("image",image)
+
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("category", formData.category);
+    data.append("desc", formData.desc);
+    data.append("price", formData.price);
+    data.append("quantity", formData.quantity);
+    if (image) {
+      data.append("image", image);
     }
 
+    setLoading(true); // Start loading
     try {
-      const response = await axios.post("http://localhost:2100/product/addproduct",data,
+      const response = await axios.post(
+        "http://localhost:2100/product/addproduct",
+        data,
         {
-          header:{
-            'Content-Type':'multipart/form-data'
+          headers: {
+            "Content-Type": "multipart/form-data",
           },
-          withCredentials:true
-        },        
-      )
+          withCredentials: true,
+        }
+      );
       console.log("Product Added Successfully:", response.data);
       alert("Product added successfully!");
-      setTimeout(()=> navigate('/sellerhome'),1000)
+      setTimeout(() => navigate("/sellerhome"), 1000);
     } catch (error) {
       console.error("Error adding product:", error);
       alert("Failed to add product. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -142,10 +147,11 @@ function ProductForm() {
           />
         </div>
 
-        <button type="submit" className="submit-button">
-          Submit Product
+        <button type="submit" className="submit-button" disabled={loading}>
+          {loading ? "Please wait..." : "Submit Product"}
         </button>
       </form>
+      {loading && <p className="loading-indicator">Processing, please wait...</p>}
     </div>
   );
 }

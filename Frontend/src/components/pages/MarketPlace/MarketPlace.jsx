@@ -1,4 +1,5 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import { CartContext } from '../../../services/CartContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -6,84 +7,12 @@ import './Marketplace.css';
 
 const ITEMS_PER_PAGE = 8;
 
-const sampleProducts = [
-  {
-    _id: '1',
-    productName: 'Fresh Apples',
-    price: 120,
-    category: 'Fruits',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '2',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '3',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '4',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '5',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '6',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '7',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '8',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '9',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '10',
-    productName: 'Organic Carrots',
-    price: 50,
-    category: 'Vegetables',
-    productImage: 'https://via.placeholder.com/150',
-  },
-  // Add more sample products as needed
-];
-
 const Marketplace = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [sampleProducts, setSampleProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [loading, setLoading] = useState(false); // New loading state
   const { cart, addToCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
 
   const navigate = useNavigate();
@@ -92,8 +21,25 @@ const Marketplace = () => {
     navigate('/cart');
   };
 
+  useEffect(() => {
+    const handleProduct = async () => {
+      setLoading(true); // Set loading to true before fetching
+      try {
+        const response = await axios.get('http://localhost:2100/product/getproducts', { withCredentials: true });
+        console.log(response.data.data);
+        setSampleProducts(response.data.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching
+      }
+    };
+
+    handleProduct();
+  }, []);
+
   const filteredProducts = sampleProducts.filter((product) => {
-    const productName = product.productName.toLowerCase();
+    const productName = product.name.toLowerCase();
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
     return (
       (selectedCategory === 'All' || product.category === selectedCategory) &&
@@ -138,68 +84,76 @@ const Marketplace = () => {
         </select>
       </div>
 
-      <div className="marketplace-products">
-        {currentProducts.length > 0 ? (
-          currentProducts.map((product) => (
-            <div key={product._id} className="product-cards">
-              <img src={product.productImage} alt={product.productName} className="product-image" />
-              <h3 className="product-name">{product.productName}</h3>
-              <p className="product-price">₹{product.price} /-</p>
-              <p className="product-category">Category: {product.category.toUpperCase()}</p>
-              <button
-                onClick={() => navigate('/productdetails')}
-                className="product-details-button"
-              >
-                View Details
-              </button>
-              <div className="product-cart-controls">
-                {cart[product._id] ? (
-                  <div className="cart-controls">
-                    <button onClick={() => decrementQuantity(product._id)} className="cart-button">
-                      -
-                    </button>
-                    <span className="cart-quantity">{cart[product._id].quantity}</span>
-                    <button onClick={() => incrementQuantity(product._id)} className="cart-button">
-                      +
-                    </button>
-                  </div>
-                ) : (
+      {loading ? ( // Show loading spinner or message while loading
+        <div className="loading-container">
+          <p>Loading products...</p>
+        </div>
+      ) : (
+        <>
+          <div className="marketplace-products">
+            {currentProducts.length > 0 ? (
+              currentProducts.map((product) => (
+                <div key={product._id} className="product-cards">
+                  <img src={product.image} alt={product.productName} className="product-image" />
+                  <h3 className="product-name">{product.productName}</h3>
+                  <p className="product-price">₹{product.price} /-</p>
+                  <p className="product-category">Category: {product.category.toUpperCase()}</p>
                   <button
-                    onClick={() => addToCart(product)}
-                    className="add-to-cart-button"
+                    onClick={() => navigate('/productdetails')}
+                    className="product-details-button"
                   >
-                    Add to Cart
+                    View Details
                   </button>
-                )}
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="no-products-message">No products found</p>
-        )}
-      </div>
+                  <div className="product-cart-controls">
+                    {cart[product._id] ? (
+                      <div className="cart-controls">
+                        <button
+                          onClick={() => decrementQuantity(product._id)}
+                          className="cart-button"
+                        >
+                          -
+                        </button>
+                        <span className="cart-quantity">{cart[product._id].quantity}</span>
+                        <button
+                          onClick={() => incrementQuantity(product._id)}
+                          className="cart-button"
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <button onClick={() => addToCart(product)} className="add-to-cart-button">
+                        Add to Cart
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="no-products-message">No products found</p>
+            )}
+          </div>
 
-      <button
-        onClick={handleViewCart}
-        className="view-cart-button"
-      >
-        <FiShoppingCart />
-        {totalItemsInCart > 0 ? ` View Cart (${totalItemsInCart})` : ' View Cart'}
-      </button>
-
-      <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            onClick={() => handlePageChange(index + 1)}
-            className={`pagination-button ${
-              currentPage === index + 1 ? 'active' : ''
-            }`}
-          >
-            {index + 1}
+          <button onClick={handleViewCart} className="view-cart-button">
+            <FiShoppingCart />
+            {totalItemsInCart > 0 ? ` View Cart (${totalItemsInCart})` : ' View Cart'}
           </button>
-        ))}
-      </div>
+
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                className={`pagination-button ${
+                  currentPage === index + 1 ? 'active' : ''
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
