@@ -91,8 +91,12 @@ const editUser = asyncHandler(async(req,res) => {
     }
 
     const {name,email,phone} = req.body
-    user.name = name
-    user.email = email
+    if(name){
+        user.name = name;
+    }
+    if(email){
+        user.email = email
+    }
     await user.save({validateBeforeSave:false})
 
     res

@@ -58,6 +58,14 @@ const Marketplace = () => {
     setCurrentPage(pageNumber);
   };
 
+  const toTitleCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   const totalItemsInCart = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -95,8 +103,8 @@ const Marketplace = () => {
               currentProducts.map((product) => (
                 <div key={product._id} className="product-cards">
                   <img src={product.image} alt={product.productName} className="product-image" />
-                  <h3 className="product-name">{product.productName}</h3>
-                  <p className="product-price">₹{product.price} /-</p>
+                  <h3 className="product-name">{toTitleCase(product.name)}</h3>
+                  <p className="product-price"><span style={{color:"red"}} >₹ {product.price}</span> /-</p>
                   <p className="product-category">Category: {product.category.toUpperCase()}</p>
                   <button
                     onClick={() => navigate('/viewdetail')}

@@ -32,7 +32,24 @@ const registerBusiness = asyncHandler(async(req,res)=>{
 })
 
 const editBusiness = asyncHandler(async(req,res)=>{
-    
+    const {businessName,businessLocation,businessCategory} = req.body;
+    const userId = req.user?._id;
+    const businessDetail = await business.findOne({ user:userId });
+    if(!businessDetail){
+        throw new ApiError(404,"Business doesn't exist!")
+    }
+    if(businessName){
+        businessDetail.businessName = businessName;
+    }
+    if(businessLocation){
+        businessDetail.businessLocation = businessLocation;
+    }
+    if(businessCategory){
+        businessDetail.businessCategory = businessCategory;
+    }
+    await businessDetail.save({validateBeforeSave:false});
+
+    res.status(201).json(new ApiResponse(201,{},"Business Details are updated!"))
 })
 
 const getBusinessDetails = asyncHandler(async (req, res) => {
@@ -52,5 +69,6 @@ const getBusinessDetails = asyncHandler(async (req, res) => {
 
 export {
     registerBusiness,
-    getBusinessDetails
+    getBusinessDetails,
+    editBusiness
 }

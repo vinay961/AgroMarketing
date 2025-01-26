@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from "react";
+import axios from 'axios';
 import "./SellerDashboard.css";
 
 const SellerDashboard = () => {
@@ -41,9 +42,14 @@ const SellerDashboard = () => {
     setBusinessDetails({ ...businessDetails, [name]: value });
   };
 
-  const handleSave = () => {
+  const handleSave = async() => {
     setIsEditing(false);
-    console.log("Updated Business Details:", businessDetails);
+    try {
+      const response = await axios.put("http://localhost:2100/business/editbusinessdetail", businessDetails , { withCredentials: true })
+      console.log("Updated Business Details:", response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
