@@ -12,7 +12,7 @@ const Marketplace = () => {
   const [sampleProducts, setSampleProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [loading, setLoading] = useState(false); // New loading state
+  const [loading, setLoading] = useState(false); 
   const { cart, addToCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
 
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Marketplace = () => {
 
   useEffect(() => {
     const handleProduct = async () => {
-      setLoading(true); // Set loading to true before fetching
+      setLoading(true); 
       try {
         const response = await axios.get('http://localhost:2100/product/getproducts', { withCredentials: true });
         console.log(response.data.data);
@@ -31,7 +31,7 @@ const Marketplace = () => {
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false); 
       }
     };
 
@@ -84,7 +84,7 @@ const Marketplace = () => {
         </select>
       </div>
 
-      {loading ? ( // Show loading spinner or message while loading
+      {loading ? ( 
         <div className="loading-container">
           <p>Loading products...</p>
         </div>
@@ -99,7 +99,7 @@ const Marketplace = () => {
                   <p className="product-price">₹{product.price} /-</p>
                   <p className="product-category">Category: {product.category.toUpperCase()}</p>
                   <button
-                    onClick={() => navigate('/productdetails')}
+                    onClick={() => navigate('/viewdetail')}
                     className="product-details-button"
                   >
                     View Details
