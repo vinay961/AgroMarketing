@@ -12,6 +12,7 @@
     background-color: #4caf50;
     color: white;
     margin: 10px 20px;
+    border-radius: 10px;
   }
   
   .hero-section h1 {
@@ -42,6 +43,8 @@
     text-align: center;
     padding: 50px 20px;
     background-color: #f1f1f1;
+    border-radius: 10px;
+    margin: 10px 20px;
   }
   
   .features-section h2 {
