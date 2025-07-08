@@ -1,0 +1,84 @@
+/* CropPrediction.css */
+
+.crop-predict-container {
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: #f0fdf4;
+  border: 2px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.crop-predict-container h1 {
+  font-size: 22px;
+  color: #065f46;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.crop-predict-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.crop-predict-line {
+  display: flex;
+  flex-direction: column;
+}
+
+.crop-predict-line label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #047857;
+}
+
+.crop-predict-line input {
+  padding: 10px;
+  border: 1px solid #d1fae5;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.crop-predict-line input:focus {
+  border-color: #10b981;
+}
+
+.crop-predict-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.crop-predict-btn-submit,
+.crop-predict-btn-reset {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.crop-predict-btn-submit {
+  background-color: #10b981;
+  color: white;
+}
+
+.crop-predict-btn-submit:hover {
+  background-color: #059669;
+}
+
+.crop-predict-btn-reset {
+  background-color: #f87171;
+  color: white;
+}
+
+.crop-predict-btn-reset:hover {
+  background-color: #ef4444;
+}
